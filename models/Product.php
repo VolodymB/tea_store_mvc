@@ -1,6 +1,7 @@
 <?php
 require_once "Model.php";
 require_once "Category.php";
+require_once 'StatusProduct.php';
 
 class Product extends Model{
     public $id;
@@ -72,6 +73,10 @@ class Product extends Model{
         return $status;
        }
 
+       public function setStatusId(int $status_id){
+        $this->status_id=$status_id;
+       }
+
        public function getUnits(){
            $units=array();
            $sql="SELECT * FROM `product_unit` WHERE `product_id`=:product_id";
@@ -88,6 +93,22 @@ class Product extends Model{
            }
            return $units;
        }
+
+       public function getComments(){
+        $comments=array();           
+        $data=array(
+            'productId'=>$this->id
+        );
+        $sql="SELECT * FROM `comment` WHERE `product_id`=:productId";
+        if($result=$this->db->select($sql,$data)){
+             foreach($result as $item){
+                 $comment=new Comment();
+                 $comment->find($item['id']);
+                 $comments[]=$comment;
+             }
+             return $comments;
+        }
+    }
 
 
 }

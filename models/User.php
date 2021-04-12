@@ -48,10 +48,21 @@ class User extends Model{
         return false;
     }
 
-    // public function getComments(){
-    //     $comments=array();
-    //     $data 
-    // }
+    public function getComments(){
+        $comments=array();
+        $data=array(
+            'userId'=>$this->id
+        );
+        $sql="SELECT * FROM `comment` WHERE `user_id`=:userId";
+        if($result=$this->db->select($sql,$data)){
+            foreach($result as $item){
+                $comment=new Comment();
+                $comment->find($item['id']);
+                $comments[]=$comment;
+            }
+            return $comments;
+        }
+    }
 
     public function login($email,$login,$password){
         //перевірка чи існує користувач

@@ -34,7 +34,8 @@ class Unit extends Model{
             $data['id']=$this->id;            
         }
         if($result=$this->db->query($sql,$data)){
-                return true;
+            $this->id=$result;    
+            return true;
             }
             return false;        
     }

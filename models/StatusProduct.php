@@ -27,9 +27,20 @@ class StatusProduct extends Model{
             $data['id']=$this->id;
         }       
             if($result=$this->db->query($sql,$data)){
+                $this->id=$result;
                 return true;
             }
             return false;        
+    }
+
+    public function getList(){
+        $sql="SELECT * FROM `status_product`";
+            $data=array(
+
+            );
+            if($result=$this->db->select($sql,$data)){
+                return $result;                
+            }
     }
 }
 ?>

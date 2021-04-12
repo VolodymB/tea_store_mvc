@@ -40,6 +40,7 @@ class Category extends Model{
             $data['id']=$this->id;
         }
         if($result=$this->db->query($sql,$data)){
+            $this->id=$result;
             return true;
         }
         return false;
@@ -67,6 +68,17 @@ class Category extends Model{
                 return $products;
             }
         }
+
+        public function getList(){
+            $sql="SELECT `name` FROM `category`";
+            $data=array(
+
+            );
+            if($result=$this->db->select($sql,$data)){
+                return $result;                
+            }
+        }
+
 
     
 }

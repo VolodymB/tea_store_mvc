@@ -29,6 +29,11 @@ class Db{
         $select->execute($data);
         return $this->pdo->lastInsertId();
     }
+
+    public function none_query($sql,$data){
+        $select=$this->pdo->prepare($sql);
+        return $select->execute($data);
+    }
 }
 
 

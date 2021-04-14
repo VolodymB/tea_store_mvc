@@ -70,13 +70,17 @@ class Category extends Model{
         }
 
         public function getList(){
-            $sql="SELECT `name` FROM `category`";
+            $sql="SELECT * FROM `category`";
             $data=array(
 
             );
             if($result=$this->db->select($sql,$data)){
                 return $result;                
             }
+        }
+
+        public function getId(){
+            return $this->id;
         }
 
 

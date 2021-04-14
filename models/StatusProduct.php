@@ -1,4 +1,6 @@
 <?php
+require_once "Model.php";
+
 class StatusProduct extends Model{
     private $id;
     public $name;

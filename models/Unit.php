@@ -9,6 +9,7 @@ class Unit extends Model{
     private $id;
     public $name;
     public $price;
+    public $quantity;
 
     public function find($id){
         $sql="SELECT * FROM `unit` WHERE `id`=:id";
@@ -53,6 +54,16 @@ class Unit extends Model{
                 $products[]=$product;
             }
             return $products;
+        }
+    }
+
+    public function getList(){
+        $sql="SELECT * FROM `unit`";
+        $data=array(
+
+        );
+        if($result=$this->db->select($sql,$data)){
+            return $result;                
         }
     }
 

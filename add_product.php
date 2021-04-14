@@ -1,6 +1,7 @@
 <?php
-require_once "model/StatusProduct.php";
-require_once "model/Product.php";
+require_once "models/StatusProduct.php";
+require_once "models/Product.php";
+
 
 // $category=new Category();
 //$categories=$category->getAll();- масив значень
@@ -36,5 +37,5 @@ if(isset($_POST['send'])){
     }
     
 }
-
+include('views/product_form/add_product.php');
 ?>

@@ -28,17 +28,7 @@
     <?php } ?>
     </select>
     <!-- необхідно зациклити диний сектор, для повторного вибору -->
-    <!-- <p>Одниція виміру</p>
-    <select name="units">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    </select>
-    <p>Ціна</p>
-    <input type="number" name='price' placeholder='price'><br>
-    <p>Кількість</p>
-    <input type="number" name='quantity' placeholder='quantity'><br>
-    <a href="">Продовжити</a><br> -->
+    
     <!-- при натисканні продовжити, повторити форму -->
     <br>
     <input type="submit" name='send'><br>

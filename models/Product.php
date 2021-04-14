@@ -45,9 +45,33 @@ class Product extends Model{
             $data['id']=$this->id;
         }
         if($result=$this->db->query($sql,$data)){
+            $this->id=$result;
             return true;
         }
         return false;
+    }
+
+    public function addCategories(array $categories){
+        //довання циклом до таблиці Category_Product 
+        $data=array(
+            'product_id'=>$this->id,
+        );
+        //видалення всіх записів про товар
+        $sql='DELETE FROM `product_category` WHERE `product_id`=:product_id';
+        if($result=$this->db->none_query($sql,$data)){
+         $sql='INSERT INTO `product_category`(`category_id`, `product_id`) VALUES (:category_id,:product_id)';
+        foreach($categories as $category){
+            $data['category_id']=$category;            
+            $result=$this->db->none_query($sql,$data);
+            if(!$result){
+            return false;
+            }        
+        }
+           return true;
+        }
+        return false;        
+                
+        
     }
 
     public function getCategories(){
@@ -67,6 +91,8 @@ class Product extends Model{
         }
     }
 
+
+
     public function getStatus(){
         $status=new StatusProduct();
         $status->find($this->status_id);
@@ -83,8 +109,8 @@ class Product extends Model{
            $data=array(
                'product_id'=>$this->id
            );
-           if($resolt=$this->db->select($sql,$data)){
-                foreach ($resolt as $item){                  
+           if($result=$this->db->select($sql,$data)){
+                foreach ($result as $item){                  
                     $unit=new Unit();
                     $unit->find($item['unit_id']);
                     $unit->price=$item['price'];

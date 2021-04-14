@@ -13,7 +13,7 @@
     <p><?=$product->status->name?></p>
     <form action="" method='POST'>
     <?php foreach($categories as $item){ ?>
-    <input type="checkbox" name='category[]' value='<?=$item['id']?>'><?=$item['name']?>
+    <input type="checkbox" name='category[]' value='<?=$item['id']?>' <?=(in_array($item['id'],$product_category))?'checked':false?> ><?=$item['name']?>
     <?php } ?>
     <input type="submit" name='add_category' >
     </form>

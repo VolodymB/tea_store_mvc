@@ -11,8 +11,10 @@
 <body>
     <form action="" method='POST'>
     <p>Одниція виміру</p>
+    <!-- select для визначення одиниці виміру -->
     <select name="units">
     <?php foreach($units as $unit){
+        // інший варіант запису option
         echo "<option value=".$unit['id'].">".$unit['name']."</option>";
     }?>
     </select>

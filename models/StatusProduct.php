@@ -35,7 +35,9 @@ class StatusProduct extends Model{
             return false;        
     }
 
+    //перелік всіх статусів
     public function getList(){
+        //простий запит без піготовлених позицій
         $sql="SELECT * FROM `status_product`";
             $data=array(
 

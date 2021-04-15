@@ -10,7 +10,9 @@
 </head>
 <body>
     <form action="" method='POST'>
+    <!-- стиль : червоний колір для слів -->
     <input type="text" name='name' placeholder='name' value="<?=$product->name?>"><br>
+    <!-- Скорочений запис if(якщо існує $error['name']?виведення$error['name']:інакше false  ) -->
     <p style='color:red'><?=(isset($error['name']))?$error['name']:false?></p>
     <input type="number" name='year' placeholder='year' value="<?=$product->year?>"><br>
     <p style='color:red'><?=(isset($error['year']))?$error['year']:false?></p>
@@ -22,6 +24,7 @@
     <input type="checkbox" name='category' value='2'>2<br>
     <input type="checkbox" name='category' value='3'>3<br> -->
     <p>Оберіть статус</p>
+    <!-- select для вибору статуса товару -->
     <select name="status">
     <?php foreach($list_status as $item){?>    
     <option value="<?=$item['id']?>" <?=($item['id']==$product->status->id)?'selected':false?>><?=$item['name']?></option>    

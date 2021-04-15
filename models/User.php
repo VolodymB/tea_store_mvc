@@ -48,6 +48,7 @@ class User extends Model{
         return false;
     }
 
+    //всі коментарі від користувача
     public function getComments(){
         $comments=array();
         $data=array(
@@ -64,6 +65,7 @@ class User extends Model{
         }
     }
 
+    //авторизація 
     public function login($email,$login,$password){
         //перевірка чи існує користувач
         //якщо існує, авторизація

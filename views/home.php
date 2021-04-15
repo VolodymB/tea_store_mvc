@@ -10,6 +10,7 @@
     <?php
     if(isset($_SESSION['user_id'])){
     ?>
+    <!-- привіт, якщо існує імя - виводимо імя, інакше гість -->
    <h1>Hello, <?=(isset($name))?$name:'guest'?></h1>
 
    <table>
@@ -20,17 +21,21 @@
     <td><?=$product->description  ?></td>
     <td><ul>
     <?php foreach($product->categories as $category) {
+        // формування списку 
         echo "<li>$category->name</li>";
     }?>
     
     </ul></td>
     <td><ul>
+    <!-- цикл -->
     <?php foreach($product->units as $unit) {
+        // формування значенню списку
         echo "<li>за $unit->name - $unit->price грн. </li>";
     }?>
     
     </ul></td>
-    <td><?=$product->status->name ?></td>    
+    <td><?=$product->status->name ?></td>  
+      <!-- перехід на файл view по product_id  -->
     <td><a href="view.php?product_id=<?=$product->id ?>">Перегляд</a></td>    
 
     </tr>

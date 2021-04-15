@@ -51,6 +51,7 @@ class Product extends Model{
         return false;
     }
 
+    //функція для додавання Категорій чаю, вноситься масив Категорій
     public function addCategories(array $categories){
         //довання циклом до таблиці Category_Product 
         $data=array(
@@ -61,8 +62,10 @@ class Product extends Model{
         if($result=$this->db->none_query($sql,$data)){
          $sql='INSERT INTO `product_category`(`category_id`, `product_id`) VALUES (:category_id,:product_id)';
         foreach($categories as $category){
+            //до масиву data  category_id  отримує значення $category
             $data['category_id']=$category;            
             $result=$this->db->none_query($sql,$data);
+            //якщо $result є false
             if(!$result){
             return false;
             }        
@@ -74,6 +77,7 @@ class Product extends Model{
         
     }
 
+    //Функція для отримання переліку кетегорій товару 
     public function getCategories(){
         $categories=array();
         $sql="SELECT `category_id` FROM `product_category` WHERE `product_id`=:product_id";
@@ -92,17 +96,20 @@ class Product extends Model{
     }
 
 
-
+    //функція для визначення статуса продукту
     public function getStatus(){
         $status=new StatusProduct();
+        //функція find із значенням властивості status_id
         $status->find($this->status_id);
         return $status;
        }
 
+       //призначення статуса , вноситься цифрове значення $status_id
        public function setStatusId(int $status_id){
         $this->status_id=$status_id;
        }
 
+       //визначення одиниць виміру по товару
        public function getUnits(){
            $units=array();
            $sql="SELECT * FROM `product_unit` WHERE `product_id`=:product_id";
@@ -120,6 +127,7 @@ class Product extends Model{
            return $units;
        }
 
+       //коментарі на окремий товар
        public function getComments(){
         $comments=array();           
         $data=array(

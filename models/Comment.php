@@ -20,7 +20,9 @@ class Comment extends Model{
             $this->comment=$result[0]['comment'];
             $this->raiting=$result[0]['raiting'];
             $this->product_id=$result[0]['product_id'];
+            //Отримання інфо про User
             $this->user=$this->getUser();
+            //Інфо про товар
             $this->product=$this->getProduct();
             return true;
         }
@@ -50,8 +52,12 @@ class Comment extends Model{
 
 
     public function getUser(){
+        //Новий екземпляр класу
         $user= new User();
         $user->find($this->user_id);
+        //застосування функції із внесеним значенням властивості 
+        $user->find($this->user_id);
+        //повертається $user
         return $user;
     }
 

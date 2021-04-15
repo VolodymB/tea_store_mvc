@@ -14,6 +14,7 @@ class Worker extends User{
             $this->worker_id=$result[0]['id'];
             $this->user_id=$result[0]['user_id'];
             $this->role_id=$result[0]['role_id'];
+            //звернення до батьківських значень
             parent::find($this->user_id);           
             return true;
         }

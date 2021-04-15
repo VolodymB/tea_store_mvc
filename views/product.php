@@ -19,6 +19,7 @@
         echo "<li>за $unit->name - $unit->price грн. </li>";
     }?>
     </ul>
+    <!-- кнопка для створення товарної позиції -->
     <a href="cart.php?product_id=<?=$product->id?>">add to cart</a>
 </body>
 </html>

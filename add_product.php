@@ -9,7 +9,9 @@ $status=new StatusProduct();
 $list_status=$status->getList();
 $product=new Product();
 
+// якщо є кнопка відправити
 if(isset($_POST['send'])){
+    // масив Помилка
     $error=array();    
     if(isset($_POST['name'])&& !empty($_POST['name'])){        
         $product->name=$_POST['name'];
@@ -30,6 +32,7 @@ if(isset($_POST['send'])){
         $product->setStatusId($_POST['status']);
     }
 
+    // якщо пустий масив помилка
     if(empty($error)){
         if($product->save()){
             header("Location:add_product_category.php?product_id=$product->id");
@@ -37,5 +40,6 @@ if(isset($_POST['send'])){
     }
     
 }
+// підключення форми
 include('views/product_form/add_product.php');
 ?>

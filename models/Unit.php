@@ -41,6 +41,7 @@ class Unit extends Model{
             return false;        
     }
 
+    //Отримання товарів із відповідною одиницею виміру
     public function getProducts(){
         $products=array();
         $sql="SELECT `product_id` FROM `product_unit` WHERE `unit_id`=:unit_id";
@@ -57,7 +58,8 @@ class Unit extends Model{
         }
     }
 
-    public function getList(){
+    //перелік всіх одиниць виміру
+        public function getList(){
         $sql="SELECT * FROM `unit`";
         $data=array(
 

@@ -144,5 +144,9 @@ class Product extends Model{
         }
     }
 
+    function addImage($file,$title){
+        
+    }
+
 
 }

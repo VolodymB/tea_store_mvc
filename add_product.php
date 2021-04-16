@@ -1,6 +1,7 @@
 <?php
 require_once "models/StatusProduct.php";
 require_once "models/Product.php";
+require_once "models/Image.php";
 
 
 // $category=new Category();
@@ -30,6 +31,11 @@ if(isset($_POST['send'])){
     }
     if(isset($_POST['status'])&& !empty($_POST['status'])){        
         $product->setStatusId($_POST['status']);
+    }
+    if(isset($_FILES['image']) && !empty($_FILES['image'])){
+        $image=new Image();
+        $image->setImage($_FILES['image']);
+        $image->save();
     }
 
     // якщо пустий масив помилка

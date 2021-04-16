@@ -12,7 +12,7 @@
     ?>
     <!-- привіт, якщо існує імя - виводимо імя, інакше гість -->
    <h1>Hello, <?=(isset($name))?$name:'guest'?></h1>
-
+        <a href="add_product.php">Додати товар</a>
    <table>
     <tr>
     <?php foreach($products as $product){ ?>

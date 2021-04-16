@@ -9,7 +9,7 @@
     <title>Add product</title>
 </head>
 <body>
-    <form action="" method='POST'>
+    <form action="" method='POST' enctype="multipart/form-data">
     <!-- стиль : червоний колір для слів -->
     <input type="text" name='name' placeholder='name' value="<?=$product->name?>"><br>
     <!-- Скорочений запис if(якщо існує $error['name']?виведення$error['name']:інакше false  ) -->
@@ -18,11 +18,8 @@
     <p style='color:red'><?=(isset($error['year']))?$error['year']:false?></p>
     <textarea name="description" placeholder='description'><?=$product->description?></textarea><br>
     <p style='color:red'><?=(isset($error['description']))?$error['description']:false?></p>
-    <!-- <input type="image" name='image'  src=""> -->
-    <!-- <p>Вибір категорії</p>
-    <input type="checkbox" name='category' value='1'>1<br>
-    <input type="checkbox" name='category' value='2'>2<br>
-    <input type="checkbox" name='category' value='3'>3<br> -->
+    <!-- Додавання зображення -->
+    <!-- <input type="file" name='image'> -->
     <p>Оберіть статус</p>
     <!-- select для вибору статуса товару -->
     <select name="status">

@@ -44,7 +44,7 @@
     <a href="logout.php">logout</a>
     <?php }else{ ?>
         <h1>Hello, <?=(isset($name))?$name:'guest'?></h1>
-
+        <a href="add_user.php">Реєсстрація</a>
    <table>
     <tr>
     <?php foreach($products as $product){ ?>

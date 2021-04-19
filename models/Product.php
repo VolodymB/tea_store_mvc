@@ -73,8 +73,6 @@ class Product extends Model{
            return true;
         }
         return false;        
-                
-        
     }
 
     //Функція для отримання переліку кетегорій товару 
@@ -144,8 +142,23 @@ class Product extends Model{
         }
     }
 
-    function addImage($file,$title){
-        
+    function addImages($images){
+       $data=array(
+            'productId'=>$this->id,
+       );       
+       $sql='DELETE FROM `product_image` WHERE `product_id`=:productId';
+       if($result=$this->db->none_query($sql,$data)){
+           $sql='INSERT INTO `product_image`(`product_id`, `image_id`) VALUES (:productId,:imageId)';
+            foreach($images as $image){
+                $data['imageId']=$image;
+                $result=$this->db->none_query($sql,$data);
+                if(!$result){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 

@@ -10,6 +10,10 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="" method='POST' enctype="multipart/form-data">
+    <input type="file" name='image_file'><br>
+    <input type="submit" name='add_image'><br>
+    </form>
     <form action="" method='POST'>
     <div>
     <?php if($product_id){ ?>

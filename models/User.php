@@ -11,10 +11,10 @@ class User extends Model{
     public $error=false;
 
     public function create($name,$surname,$email,$login,$password){
-        if(!$error=$this->validate($name,$surname,$email,$login,$password)){
+        if($this->validate($name,$surname,$email,$login,$password)){
             return $this->save();
         }else{
-            return $error;
+            return false;
         }
     }
     
@@ -60,19 +60,19 @@ class User extends Model{
             if(mb_strlen($surname)>2 && (mb_strlen($surname)<50)){
                 if(preg_match('#^[a-zA-Z]+$#',$surname)){
                     $this->surname=$surname;
+                    return true;
                 }else{
                     $this->error="Можна без цифр будь-ласка surname"; 
-                    return false;  
+                     
                 }
             }else{
                 $this->error="введіть коректно фамілію";
-                return false;
+                
             }
         }else{
-            $this->error="введіть фамілію";
-            return false;
+            $this->error="введіть фамілію";            
         }
-        return true;
+        return false;
     }
 
     public function setEmail($email){
@@ -101,8 +101,7 @@ class User extends Model{
                     $this->login=$login;
                     return true;
                 }else{
-                    $this->error='Оберіть інший Login';
-                    return false;
+                    $this->error='Оберіть інший Login';                    
                 }
             }else{
                 $this->array='Оберіть довший Login';
@@ -121,11 +120,10 @@ class User extends Model{
                 $this->password=$password;
                 return true;
             }else{
-                $this->error='оберіть довший пароль';
-                
+                $this->error['password']='оберіть довший пароль';                
             }
         }else{
-            $this->error='Оберіть свій пароль';            
+            $this->error['password']='Оберіть свій пароль';            
         }
        return false; 
     }

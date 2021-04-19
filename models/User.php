@@ -11,28 +11,27 @@ class User extends Model{
     public $error=false;
 
     public function create($name,$surname,$email,$login,$password){
-        if($error=$this->validate($name,$surname,$email,$login,$password)){
-            echo 'ok';
-            // return $this->save();
+        if(!$error=$this->validate($name,$surname,$email,$login,$password)){
+            return $this->save();
         }else{
             return $error;
         }
     }
     
     public function validate($name,$surname,$email,$login,$password){
-        if(!$this->setName=$name){
+        if(!$this->setName($name)){
             return false;
         }
-        if(!$this->setSurname=$surname){
+        if(!$this->setSurname($surname)){
             return false;
         }
-        if(!$this->setEmail=$email){
+        if(!$this->setEmail($email)){
             return false;
         }
-        if(!$this->setLogin=$login){
+        if(!$this->setLogin($login)){
             return false;
         }
-        if(!$this->setPassword=$password){
+        if(!$this->setPassword($password)){
             return false;
         }
         return true;
@@ -41,27 +40,28 @@ class User extends Model{
     public function setName($name){
         if(isset($name) && !empty($name)){
             if(mb_strlen($name)>2 && (mb_strlen($name)<50)){
-                if(preg_match('#^[a-z][A-Z]$#')){
+                if(preg_match('#^[a-zA-Z]+$#',$name)){
                     $this->name=$name;
+                    return true;
                 }else{
-                   echo "Можна без цифр будь-ласка";   
+                   $this->error= "Можна без цифр будь-ласка name";   
                 }
             }else{
-                echo "введіть коректне імя";
+                $this->error= "введіть коректне імя";
             }
         }else{
-            echo "введіть імя";
+            $this->error= "введіть імя";
         }
-        return true;
+        return false;
     }
 
     public function setSurname($surname){
         if(isset($surname) && !empty($surname)){
             if(mb_strlen($surname)>2 && (mb_strlen($surname)<50)){
-                if(preg_match('#^[a-z][A-Z]$#')){
+                if(preg_match('#^[a-zA-Z]+$#',$surname)){
                     $this->surname=$surname;
                 }else{
-                    $this->error="Можна без цифр будь-ласка"; 
+                    $this->error="Можна без цифр будь-ласка surname"; 
                     return false;  
                 }
             }else{
@@ -79,52 +79,55 @@ class User extends Model{
        if(isset($email) && !empty($email)){
             if(strstr($email,'@')){
                 $this->email=$email;
+                return true; 
             }else{
                 $this->error='введіть коретктний email';
             }
        }else{
            $this->error='введіть email';
-           return false;
+           
        }
-       return true; 
+       return false;
     }
 
-    public function setLogin(){
+    public function setLogin($login){
         if(isset($login) && !empty($login)){
             if(mb_strlen($login)>=2 && mb_strlen($login)<50){
                 $sql="SELECT `login` FROM `user` WHERE `login`=:newLogin";
                 $data=array(
-                    'newLogin'=>$this->login
+                    'newLogin'=>$login
                 );
                 if(!$result=$this->db->select($sql,$data)){
                     $this->login=$login;
+                    return true;
                 }else{
-                    $this->erro='Оберіть інший Login';
+                    $this->error='Оберіть інший Login';
                     return false;
                 }
             }else{
                 $this->array='Оберіть довший Login';
-                return false;
+                
             }
         }else{
             $this->error='введіть ваш login';
-            return false;
+            
         }
-        return true;
+        return false;
     }
 
-    public function setPassword(){
+    public function setPassword($password){
         if(isset($password) && !empty($password)){
-            if(mb_strlen($login)>=2 && mb_strlen($login)<50){
+            if(mb_strlen($password)>=2 && mb_strlen($password)<50){
                 $this->password=$password;
+                return true;
             }else{
                 $this->error='оберіть довший пароль';
+                
             }
         }else{
-            $this->error='Оберіть свій пароль';
-            return false;
+            $this->error='Оберіть свій пароль';            
         }
-        return true;
+       return false; 
     }
 
     public function find($id){

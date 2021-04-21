@@ -12,23 +12,21 @@
 <body>
     <form action="" method='POST' enctype="multipart/form-data">
     <input type="file" name='image_file'><br>
-    <input type="submit" name='add_image'><br>
+    <input type="submit" name='add_image' value='нове зображення'><br>
     </form>
     <form action="" method='POST'>
     <div>
     <?php if($product_id){ ?>
-    <input type="submit" name='send'>
+    <input type="submit" name='send' value='додати до товару'>
     <?php } ?>
-    <input type="button" name='delete' value='видалити'>
-    <!-- <?php if(isset($_POST['delete'])){ ?> -->
-        <!-- <a href="delete_image.php?id<?=$images[]['id']?>"></a> -->
-    <?php } ?>
+    <input type="button" name='delete' value='видалити'>     
     </div>
     <br>
     <div>
     <?php foreach($images as $image){ ?>
     <lable><input type="checkbox" name='images[]' value="<?=$image['id']?>">
     <img src="<?=$image['image']?>" style="max-width: 100px">
+    <a href="delete_image.php?image_id=<?=$image['id']?><?=($product_id)?'&product_id='.$product_id:false?>">Видалення</a> 
     <lable>
     <?php } ?>
     </div>

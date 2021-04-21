@@ -6,8 +6,18 @@ class Image extends Model{
     public $image;
 
     public function find($id){
-
+        $sql="SELECT * FROM `image` WHERE `id`=:id";
+        $data=array(
+            'id'=>$id
+        );
+        if($result=$this->db->select($sql,$data)){
+            $this->id=$result[0]['id'];
+            $this->image=$result[0]['image'];
+            return true;
+        }
+        return false;
     }
+
     // надаємо значення властивості name і додаємо в файл
     public function setImage(array $file){
         //проверяем загужен ли файл и загружен без ошибок
@@ -46,6 +56,36 @@ class Image extends Model{
             return $result;
         }
         return false;
+    }
+
+    public function getProductIdByImage(){
+        $data=array(
+            'image_id'=>$this->id
+        );
+        $sql='SELECT `product_id` FROM `product_image` WHERE `image_id`=:image_id';
+        $products=array();
+        if($result=$this->db->select($sql,$data)){
+            return $result;
+        }
+        return false;
+    }
+
+    public function delete(){
+        $data=array(
+            'id'=>$this->id
+        );
+        $sql='DELETE FROM `image` WHERE `id`=:id';
+        if($result=$this->db->none_query($sql,$data)){
+            $this->deleteFile();
+            return true;
+        }
+        return false;
+    }
+
+    public function deleteFile(){
+        if(file_exists($this->image)){
+            unlink($this->image);
+        }
     }
 
 

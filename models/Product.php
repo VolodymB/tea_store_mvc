@@ -159,6 +159,33 @@ class Product extends Model{
             return true;
         }
         return false;
+    }    
+
+    public function deleteImage(Image $image){
+        $data=array(
+            'imageId'=>$image->id
+        );
+        $sql='DELETE FROM `product_image` WHERE `image_id`=:imageId';
+        if($result=$this->db->none_query($sql,$data)){
+            return true;
+        }
+        return false;
+    }
+
+    public function getImages(){
+        $images=array();
+        $sql='SELECT `image_id` FROM `product_image` WHERE `product_id`=:product_id';
+        $data=array(
+            'product_id'=>$this->id
+        );
+        if($result=$this->db->select($sql,$data)){
+            foreach($result as $item){
+                $image=new Image();
+                $image->find($item['image_id']);
+                $images[]=$image;
+            }
+            return $images;
+        }
     }
 
 

@@ -20,6 +20,7 @@ if(isset($_GET['product_id']) && !empty($_GET['product_id'])){
     
     $product=new Product();
     if($product->find($_GET['product_id'])){
+        $images=$product->getImages();
         $product_id=$_GET['product_id'];
         if(isset($_POST['send'])){
             $new_images=array();

@@ -44,13 +44,13 @@ class User extends Model{
                     $this->name=$name;
                     return true;
                 }else{
-                   $this->error= "Можна без цифр будь-ласка name";   
+                   $this->error['name']= "Можна без цифр будь-ласка name";   
                 }
             }else{
-                $this->error= "введіть коректне імя";
+                $this->error['name']= "введіть коректне імя";
             }
         }else{
-            $this->error= "введіть імя";
+            $this->error['name']= "введіть імя";
         }
         return false;
     }
@@ -62,15 +62,15 @@ class User extends Model{
                     $this->surname=$surname;
                     return true;
                 }else{
-                    $this->error="Можна без цифр будь-ласка surname"; 
+                    $this->error['surname']="Можна без цифр будь-ласка surname"; 
                      
                 }
             }else{
-                $this->error="введіть коректно фамілію";
+                $this->error['surname']="введіть коректно фамілію";
                 
             }
         }else{
-            $this->error="введіть фамілію";            
+            $this->error['surname']="введіть фамілію";            
         }
         return false;
     }
@@ -81,10 +81,10 @@ class User extends Model{
                 $this->email=$email;
                 return true; 
             }else{
-                $this->error='введіть коретктний email';
+                $this->error['email']='введіть коретктний email';
             }
        }else{
-           $this->error='введіть email';
+           $this->error['email']='введіть email';
            
        }
        return false;
@@ -101,14 +101,14 @@ class User extends Model{
                     $this->login=$login;
                     return true;
                 }else{
-                    $this->error='Оберіть інший Login';                    
+                    $this->error['login']='Оберіть інший Login';                    
                 }
             }else{
-                $this->array='Оберіть довший Login';
+                $this->array['login']='Оберіть довший Login';
                 
             }
         }else{
-            $this->error='введіть ваш login';
+            $this->error['login']='введіть ваш login';
             
         }
         return false;

@@ -2,7 +2,7 @@
 require_once "model.php";
 
 class StatusOrder extends Model{
-    private $id;
+    public $id;
     public $name;
 
     public function find($id){

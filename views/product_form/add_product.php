@@ -9,7 +9,8 @@
     <title>Add product</title>
 </head>
 <body>
-    <form action="" method='POST' enctype="multipart/form-data">
+    
+        <form action="" method='POST' enctype="multipart/form-data">
     <!-- стиль : червоний колір для слів -->
     <input type="text" name='name' placeholder='name' value="<?=$product->name?>"><br>
     <!-- Скорочений запис if(якщо існує $error['name']?виведення$error['name']:інакше false  ) -->
@@ -19,6 +20,14 @@
     <textarea name="description" placeholder='description'><?=$product->description?></textarea><br>
     <p style='color:red'><?=(isset($error['description']))?$error['description']:false?></p>
     <!-- Додавання зображення -->
+    <img src="<?=$product->image['image']?>" style="max-width: 100px">
+    <?php if($product_id){ ?>
+    <a href="add_image.php?product_id=<?=$product->id?>">Змінити зображення</a>
+    <br>
+    <a href="add_product_category.php?product_id=<?=$product->id?>">Оберіть категорію</a>
+    <br>
+    <a href="add_product_unit.php?product_id=<?=$product->id?>">Оберіть одиницю виміру</a>
+    <?php } ?>
     <!-- <input type="file" name='image'> -->
     <p>Оберіть статус</p>
     <!-- select для вибору статуса товару -->
@@ -27,12 +36,13 @@
     <option value="<?=$item['id']?>" <?=($item['id']==$product->status->id)?'selected':false?>><?=$item['name']?></option>    
     <?php } ?>
     </select>
+    
     <!-- необхідно зациклити диний сектор, для повторного вибору -->
     
     <!-- при натисканні продовжити, повторити форму -->
     <br>
     <input type="submit" name='send'><br>
     
-    </form>
+ 
 </body>
 </html>

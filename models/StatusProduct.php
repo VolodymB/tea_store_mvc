@@ -2,7 +2,7 @@
 require_once "Model.php";
 
 class StatusProduct extends Model{
-    private $id;
+    public $id;
     public $name;
 
     public function find($id){

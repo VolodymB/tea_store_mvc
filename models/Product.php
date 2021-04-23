@@ -2,6 +2,7 @@
 require_once "Model.php";
 require_once "Category.php";
 require_once 'StatusProduct.php';
+require_once 'Image.php';
 
 class Product extends Model{
     public $id;
@@ -11,6 +12,7 @@ class Product extends Model{
     private $status_id;
     public $categories;
     public $units;
+    public $images;
 
     public function find($id){
         $sql="SELECT * FROM `product` WHERE `id`=:id";
@@ -26,6 +28,7 @@ class Product extends Model{
             $this->categories = $this->getCategories();
             $this->status=$this->getStatus();
             $this->units = $this->getUnits();
+            $this->images =$this->getImages();
             return true;
         }
         return false;

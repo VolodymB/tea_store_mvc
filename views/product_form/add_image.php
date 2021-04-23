@@ -24,13 +24,17 @@
     <br>
     <div>
     <?php foreach($images as $image){ ?>
-    <lable><input type="checkbox" name='images[]' value="<?=$image['id']?>">
+    <lable><input type="checkbox" name='images[]' value="<?=$image['id']?>" <?=(in_array($image['id'],$product_image))?'checked':false?>>
     <img src="<?=$image['image']?>" style="max-width: 100px">
     <a href="delete_image.php?image_id=<?=$image['id']?><?=($product_id)?'&product_id='.$product_id:false?>">Видалення</a> 
     <lable>
     <?php } ?>
     </div>
     </form>
+    <?php if($product_id){ ?>
+        <a href="view.php?product_id=<?=$product_id?>">Повернутись до попереднього меню</a>
+    <?php } ?>
+   
     
 </body>
 </html>

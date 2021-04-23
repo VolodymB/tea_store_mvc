@@ -6,7 +6,7 @@
 require_once 'Model.php';
 
 class Unit extends Model{
-    private $id;
+    public $id;
     public $name;
     public $price;
     public $quantity;

@@ -27,7 +27,17 @@
         <a href="add_product.php?product_id=<?=$product->id?>">Редагувати інформацію</a><br>
         <?php }?>
         <!-- кнопка для створення товарної позиції -->
-        <a href="cart.php?product_id=<?=$product->id?>">add to cart</a>
+        <form action="cart.php" method='POST'>
+        <select name="unit_product">
+        <?php foreach($product->units as $unit) { ?>
+            <option value=<?=$unit->id ?>><?php echo "за $unit->name - $unit->price грн."; ?></option>
+        <?php } ?>
+        </select>
+        <br>
+        <input type="hidden" name='product_id' value=<?=$product->id?>>
+        <input type="number" name='quantity' min=1 value=1><br>
+        <input type="submit" name='add_to_cart' value='add to cart'>
+        </form>
         <br>
         <a href="index.php">Повернутись до попереднього меню</a>
    

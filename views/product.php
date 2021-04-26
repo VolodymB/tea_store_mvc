@@ -14,9 +14,13 @@
 <body>   
         <h1><?=$product->name.', '.$product->year?></h1>
         <p><?=$product->description?></p>
-        <?php foreach($product->images as $item){ ?>
-            <img src="<?=$item->image?>" style="max-width: 100px">
+        <?php if($product->images){ ?>
+        <?php foreach($product->images as $item){ ?>            
+            <img src="<?=$item->image?>" style="max-width: 100px">           
         <?php } ?>
+        <?php }else{ ?>
+            <p>Не має зображення</p>
+            <?php } ?>
         <ul>
         <?php foreach($product->units as $unit) {
             echo "<li>за $unit->name - $unit->price грн. </li>";

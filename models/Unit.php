@@ -69,6 +69,18 @@ class Unit extends Model{
         }
     }
 
+    public function getPrice($product_id,$unit_id){
+        $sql="SELECT `price` FROM `product_unit` WHERE `product_id`=:product_id AND `unit_id`=:unit_id";
+        $data=array(
+            'product_id'=>$product_id,
+            'unit_id'=>$unit_id
+        );
+        
+        if($result=$this->db->select($sql,$data)){
+            return $result;
+        }
+    }
+
 
 }
 ?>

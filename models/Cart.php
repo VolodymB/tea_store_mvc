@@ -22,11 +22,15 @@ class Cart{
                 //додавання кількості певного product_id
                 $_SESSION['cart'][$product_id][$unit_id] += $quantity;
                 return true;
-            }            
+            }  else {
+                $_SESSION['cart'][$product_id][$unit_id]=$quantity;
+                return true;       
+            }           
+        } else {           
+            $_SESSION['cart'][$product_id] = array($unit_id=>$quantity);
+            return true;       
         }
-        $_SESSION['cart'][$product_id]=array($unit_id => $quantity);
-                return true;
-        
+        return false;
     }
 
     /**
@@ -46,12 +50,55 @@ class Cart{
      */
     public function getProducts(){
         session_start();
-        return $_SESSION['cart'];
-    
+        //return $_SESSION['cart'];
         //повернення показника cart з масиву _SESSION
-        // array(3) { [2]=> int(1) [8]=> int(1) [6]=> int(2) }
-        foreach($_SESSION['cart'] as $product_id => $quantity){
+        // array(2) {
+        //     [5]=>
+        //     array(2) {
+        //       [3]=> 
+        //       int(5)
+        //       [2]=>
+        //       int(3)
+        //     }
+        //     [6]=>
+        //     array(1) {
+        //       [2]=>
+        //       string(1) "1"
+        //     }
+        //   }
+        $products=array();
+        foreach($_SESSION['cart'] as $product_id => $info){  
 
+            $product=new Product();
+            $product->find($product_id);
+
+            $param_units = array();
+            foreach($info as $unit_id => $quantity){
+                foreach($product->units as $unit){
+                    if($unit->id === $unit_id){
+                        $param_units[] = array(
+                            'unit_id' => $unit->id,
+                            'name' => $unit->name,
+                            'quantity' => $quantity,
+                            'price' => $unit->price 
+                        );
+                    }
+                }
+            }
+
+            $products[] = array(
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'year' => $product->year,
+                'image' => $product->images,
+                'units' => $param_units,
+            );
+            return $products;
+            // $unit=new Unit();
+            // $unit->find($_POST['unit_product']);
+
+            // // array(1) { [0]=> array(1) { ["price"]=> float(300) } }
+            // $price=$unit->getPrice($_POST['product_id'],$_POST['unit_product']);
         }
        
         

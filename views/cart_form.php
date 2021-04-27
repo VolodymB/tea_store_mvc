@@ -13,26 +13,27 @@
 <body>
     <table>
     <tr><th>Зображення</th><th>Назва</th><th>Одиниця виміру</th><th>Ціна за одниницю</th><th>Кількість</th><th>Загальна сумма</th></tr>
-    <?php if($product->images){ ?>
-        <?php foreach($product->images as $item_image){ ?>            
+    <?php foreach($products as $product):?>
+        <?php foreach($product['units'] as $unit):?>
+
+        <?php if($product['images']){ ?>
+        <?php foreach($product['images'] as $item_image){ ?>            
             <td><img src="<?=$item_image->image?>" style="max-width: 100px"></td>           
         <?php } ?>
         <?php }else{ ?>
             <p>Не має зображення</p>
             <?php } ?>
-    <td><img src="<?=$item->image?>" style="max-width: 100px"></td>    
-    <td><?=$product->name.', '.$product->year?></td>
-    
-    
-    <td><?=$unit->name?></td>
-    <td><?=$price[0]['price']?></td>        
+        <td><img src="<?=$item->image?>" style="max-width: 100px"></td>    
+        <td><?=$product['name'].', '.$product['year']?></td>       
+        <td><?=$unit['name']?></td>
+        <td><?=$unit['price']?></td>                   
+        <td><?=$unit['quantity']?></td>
+        <td><?=($unit['price']*$unit['quantity'])?></td> 
+         <td><a href="">Відмінити позицію</a><td>   
+        </tr>
+    <?php endforeach; ?>
+    <?php endforeach; ?>
 
-           
-    <td><?=$_POST['quantity']?></td>
-                  
-    <td><?php echo $price[0]['price']*$_POST['quantity'] ?></td> 
-     <td><a href="">Відмінити позицію</a><td>   
-    </tr>
     </table>
     <a href="index.php">Продовжити вибір</a><br>
     

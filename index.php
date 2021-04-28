@@ -12,7 +12,7 @@ if(isset($_SESSION['user_id'])){
   $user->find($user_id);
   //дістати з Юзера імя і вкласти до змінної name
   $name=$user->name;
-  echo 'Hello'.', '.$name;
+
 }
 
 

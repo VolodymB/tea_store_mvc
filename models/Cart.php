@@ -13,7 +13,7 @@ class Cart{
      */
     //фунуція додавання товарів до кошику
     //приймає product_id, quantity (кількість) яка рівна по дефолту 1
-    public function add($product_id,$unit_id,$quantity=1){
+    public function add($product_id,$unit_id=0,$quantity=1){
         //відкриття сесії
         session_start();
         //перевірка чи існує в сесії product_id
@@ -38,8 +38,17 @@ class Cart{
      * вхідні дані:
      * ідентифікатор товару product_id
      */
-    public function remove(){
-
+    public function remove($product_id,$unit_id){        
+        if(isset($_SESSION['cart'][$product_id][$unit_id])){
+            unset($_SESSION['cart'][$product_id][$unit_id]);
+            if(empty($_SESSION['cart'][$product_id])){
+                unset($_SESSION['cart'][$product_id]);
+                if((empty($_SESSION['cart']))){
+                    $this->clear();
+                }
+            }
+        }
+        
     }
 
 
@@ -50,15 +59,16 @@ class Cart{
      */
     public function getProducts(){
         session_start();
-        //return $_SESSION['cart'];
+        var_dump ($_SESSION['cart']);
+        // die;
         //повернення показника cart з масиву _SESSION
-        // array(2) {
+        // array(2) { 
         //     [5]=>
-        //     array(2) {
+        //     array(2) product id{
         //       [3]=> 
-        //       int(5)
+        //       int(5) unit id
         //       [2]=>
-        //       int(3)
+        //       int(3) quantity
         //     }
         //     [6]=>
         //     array(1) {
@@ -92,21 +102,21 @@ class Cart{
                 'year' => $product->year,
                 'image' => $product->images,
                 'units' => $param_units,
-            );
-            return $products;
+            );            
             // $unit=new Unit();
             // $unit->find($_POST['unit_product']);
 
             // // array(1) { [0]=> array(1) { ["price"]=> float(300) } }
             // $price=$unit->getPrice($_POST['product_id'],$_POST['unit_product']);
         }
-       
+       return $products;
         
     }
 
     public function clear(){
         session_start();
         unset($_SESSION['cart']);
+        header("Location:index.php");
     }
 
 

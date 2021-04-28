@@ -15,13 +15,12 @@
     <tr><th>Зображення</th><th>Назва</th><th>Одиниця виміру</th><th>Ціна за одниницю</th><th>Кількість</th><th>Загальна сумма</th></tr>
     <?php foreach($products as $product):?>
         <?php foreach($product['units'] as $unit):?>
-
         <?php if($product['images']){ ?>
         <?php foreach($product['images'] as $item_image){ ?>            
             <td><img src="<?=$item_image->image?>" style="max-width: 100px"></td>           
         <?php } ?>
         <?php }else{ ?>
-            <p>Не має зображення</p>
+            <td><p>Не має зображення</p></td>
             <?php } ?>
         <td><img src="<?=$item->image?>" style="max-width: 100px"></td>    
         <td><?=$product['name'].', '.$product['year']?></td>       
@@ -29,7 +28,7 @@
         <td><?=$unit['price']?></td>                   
         <td><?=$unit['quantity']?></td>
         <td><?=($unit['price']*$unit['quantity'])?></td> 
-         <td><a href="">Відмінити позицію</a><td>   
+         <td><a href="remowe_cart.php?product_id=<?=$product['product_id']?>&unit_id=<?=$unit['unit_id']?>">Відмінити позицію</a><td>   
         </tr>
     <?php endforeach; ?>
     <?php endforeach; ?>

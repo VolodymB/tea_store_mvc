@@ -26,10 +26,7 @@
             echo "<li>за $unit->name - $unit->price грн. </li>";
         }?>
         </ul>
-        <br>
-        <?php if($user_id){?>
-        <a href="add_product.php?product_id=<?=$product->id?>">Редагувати інформацію</a><br>
-        <?php }?>
+        <br>        
         <!-- кнопка для створення товарної позиції -->
         <form action="cart.php" method='POST'>
         <select name="unit_product">
@@ -43,7 +40,8 @@
         <input type="submit" name='add_to_cart' value='add to cart'>
         </form>
         <br>
-        <a href="index.php">Повернутись до попереднього меню</a>
+        <a href="index.php">Повернутись до попереднього меню</a><br>
+        <a href="admin.php">Повернутись до списку</a><br>
    
     
 </body>

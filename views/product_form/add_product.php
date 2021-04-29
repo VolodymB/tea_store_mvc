@@ -43,6 +43,7 @@
     <br>
     <input type="submit" name='send'><br>
     
+<a href="view.php?product_id=<?=$product->id?>">Повернутись до попередього меню</a><br>
  
 </body>
 </html>

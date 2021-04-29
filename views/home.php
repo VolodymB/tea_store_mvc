@@ -9,7 +9,8 @@
 <body>
 <h1>Hello, <?=(isset($name))?$name:'guest'?></h1>
 <?php if (isset($name)){ ?>
-    <a href="add_product.php">Додати товар</a>
+    <a href="admin.php">Режим адміністратора</a><br>
+    
 <?php }else{ ?>
     <a href="add_user.php">Реєсстрація</a>
 <?php } ?>
@@ -38,8 +39,7 @@
     </ul></td>
     <td><?=$product->status->name ?></td>  
       <!-- перехід на файл view по product_id  -->
-    <td><a href="view.php?product_id=<?=$product->id ?>">Перегляд</a></td>    
-
+    <td><a href="view.php?product_id=<?=$product->id ?>">Перегляд</a></td>  
     </tr>
     <?php }
         } ?>

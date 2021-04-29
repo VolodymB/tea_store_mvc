@@ -191,5 +191,15 @@ class Product extends Model{
         }
     }
 
+    public function getList(){
+        $data=array(
+
+        );
+        $sql='SELECT * FROM `product`';
+        if($result=$this->db->select($sql,$data)){
+            return $result;
+        }
+    }
+
 
 }

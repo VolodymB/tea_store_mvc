@@ -128,6 +128,19 @@ class Product extends Model{
            return $units;
        }
 
+       public function addUnits(array $units){
+        $sql="INSERT INTO `product_unit`(`product_id`,`unit_id`, `price`, `quantity`) VALUES (:product_id,:unit_id,:price,:quantity)";
+        $data=array(
+            'product_id'=>$this->id,
+            'unit_id'=>$units['units'],
+            'price'=>$units['price'],
+            'quantity'=>$units['quantity']
+        );
+        if($result=$this->db->query($sql,$data)){
+            return true;
+        }
+    }
+
        //коментарі на окремий товар
        public function getComments(){
         $comments=array();           

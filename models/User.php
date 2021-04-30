@@ -8,6 +8,7 @@ class User extends Model{
     public $email;
     public $login;
     public $password;
+    public $role;
     public $error=false;
 
     public function create($name,$surname,$email,$login,$password){
@@ -140,6 +141,7 @@ class User extends Model{
             $this->email=$result[0]['email'];
             $this->login=$result[0]['login'];
             $this->password=$result[0]['password'];
+            $this->role=$this->getRole();
             return true;
         }
         return false;
@@ -199,6 +201,16 @@ class User extends Model{
             return $result[0]['id'];
         }
 
+    }
+
+    public function getRole(){
+        $sql="SELECT rol.`name` as 'role_name' FROM `user_role` us_role  LEFT JOIN `role` rol  ON us_role.`role_id`=rol.`id`  WHERE `user_id`=:userId";
+        $data=array(
+            'userId'=>$this->id
+        );
+        if($result=$this->db->select($sql,$data)){
+            return $result[0]['role_name'];
+        }
     }
 
 

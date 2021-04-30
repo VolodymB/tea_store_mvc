@@ -14,11 +14,11 @@
  <th>Статус товару</th></tr>
  <tr>
  <?php foreach($products as $product){ ?>
-<td><?=$product['name'].','.$product['year'] ?></td>
-<?php $status->find($product['status_id']); ?>
-<td><?=$status->name ?></td>
-<td><a href="view.php?product_id=<?=$product['id'] ?>">Детальніше</a></td>
-<td><a href="add_product.php?product_id=<?=$product['id']?>">Редагувати інформацію</a><br></td>
+<td><?=$product->name.','.$product->year ?></td>
+<td><?=$product->status->name ?></td>
+<td><a href="view.php?product_id=<?=$product->id ?>">Детальніше</a></td>
+<td><a href="add_product.php?product_id=<?=$product->id?>">Редагувати інформацію</a></td>
+<td><a href="delete_product.php?product_id=<?=$product->id?>">Видалити</a></td>
  </tr>
  <?php } ?>
  </table>

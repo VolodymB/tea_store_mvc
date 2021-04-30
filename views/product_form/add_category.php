@@ -19,5 +19,6 @@
     <?php } ?>
     <input type="submit" name='add_category' >
     </form>
+    <a href="add_product.php?product_id=<?=$product_id?>">Повернутись до попереднього меню</a>
 </body>
 </html>

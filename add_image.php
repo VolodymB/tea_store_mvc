@@ -20,6 +20,7 @@ if(isset($_GET['product_id']) && !empty($_GET['product_id'])){
     
     $product=new Product();
     if($product->find($_GET['product_id'])){
+        // if(!empty($product->images)){
         //масив з id зображень товару
         $product_image=array();
         foreach($product->images as $image){
@@ -33,6 +34,7 @@ if(isset($_GET['product_id']) && !empty($_GET['product_id'])){
             }            
             $product->addImages($new_images);            
         }
+        // }
     }
 
 }

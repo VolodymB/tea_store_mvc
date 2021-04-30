@@ -9,6 +9,14 @@
     <title>add Units</title>
 </head>
 <body>
+    <?php if(isset($product_unit) && !empty($product_unit)){ ?>
+    <!-- сторення таблиці і додати видалення построково (схоже на image) -->
+    <?php
+        echo '<pre>';
+         var_dump($product_unit); 
+         echo '</pre>';
+         ?>
+    <?php } ?>
     <form action="" method='POST'>
     <p>Одниція виміру</p>
     <!-- select для визначення одиниці виміру -->
@@ -25,5 +33,6 @@
     <input type="submit" name='add_unit'>Додати
     </form>
     <a href="">Продовжити</a><br>
+    <a href="add_product.php?product_id=<?=$product_id?>">Повернутись до попереднього меню</a><br>
 </body>
 </html>

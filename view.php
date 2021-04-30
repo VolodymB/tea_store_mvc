@@ -5,6 +5,7 @@ session_start();
 
 $user_id=$_SESSION['user_id'];
 
+
 $product_id=(isset($_GET['product_id']))?$_GET['product_id']:false;
 if($product_id){
 require_once "models/Product.php";

@@ -32,7 +32,7 @@
     </div>
     </form>
     <?php if($product_id){ ?>
-        <a href="view.php?product_id=<?=$product_id?>">Повернутись до попереднього меню</a>
+        <a href="add_product.php?product_id=<?=$product_id?>">Повернутись до попереднього меню</a>
     <?php } ?>
    
     

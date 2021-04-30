@@ -81,6 +81,10 @@ class Unit extends Model{
         }
     }
 
+    public function getId(){
+        return $this->id;
+    }
+
 
 }
 ?>

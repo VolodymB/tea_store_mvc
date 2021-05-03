@@ -85,6 +85,20 @@ class Unit extends Model{
         return $this->id;
     }
 
+    // public function getProductIdByUnit(){
+    //     $data=array(
+    //         'image_id'=>$this->id
+    //     );
+    //     $sql='SELECT `product_id` FROM `product_unit` WHERE `image_id`=:image_id';
+    //     $products=array();
+    //     if($result=$this->db->select($sql,$data)){
+    //         return $result;
+    //     }
+    //     return false;
+    // }
+
+   
+
 
 }
 ?>

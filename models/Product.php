@@ -141,6 +141,18 @@ class Product extends Model{
         }
     }
 
+    
+    public function deleteUnit($unit_id){
+        $data=array(
+            'unitId'=>$unit_id
+        );
+        $sql='DELETE FROM `product_unit` WHERE `unit_id`=:unitId';
+        if($result=$this->db->none_query($sql,$data)){
+            return true;
+        }
+        return false;
+    }
+
        //коментарі на окремий товар
        public function getComments(){
         $comments=array();           
@@ -214,5 +226,6 @@ class Product extends Model{
         }
     }
 
+    }
 
-}
+

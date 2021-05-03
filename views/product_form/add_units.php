@@ -10,13 +10,23 @@
 </head>
 <body>
     <?php if(isset($product_unit) && !empty($product_unit)){ ?>
+    <table>
+    <tr><th>Назва</th><th>Ціна,грн</th><th>Кількість</th></tr> 
     <!-- сторення таблиці і додати видалення построково (схоже на image) -->
-    <?php
+    <?php foreach ($product_unit as $item){ ?> 
+    <?php 
         echo '<pre>';
-         var_dump($product_unit); 
-         echo '</pre>';
-         ?>
-    <?php } ?>
+        var_dump($item);
+        echo '</pre>'; 
+        ?>
+    <tr>        
+     <td><?=$item->name?></td>
+     <td><?=$item->price?></td>
+     <td><?=$item->quantity?></td> 
+     <td><a href="delete_unit.php?unit_id=<?=$item->id?><?=($product_id)?'&product_id='.$product_id:false?>">Видалити</a></td>     
+     </tr>       
+    <?php }} ?>
+     </table> 
     <form action="" method='POST'>
     <p>Одниція виміру</p>
     <!-- select для визначення одиниці виміру -->

@@ -3,6 +3,7 @@ require_once "Model.php";
 require_once "Category.php";
 require_once 'StatusProduct.php';
 require_once 'Image.php';
+require_once 'Comment.php';
 
 class Product extends Model{
     public $id;
@@ -13,6 +14,7 @@ class Product extends Model{
     public $categories;
     public $units;
     public $images;
+    public $comments;
 
     public function find($id){
         $sql="SELECT * FROM `product` WHERE `id`=:id";
@@ -29,6 +31,7 @@ class Product extends Model{
             $this->status=$this->getStatus();
             $this->units = $this->getUnits();
             $this->images =$this->getImages();
+            $this->comments=$this->getComments();
             return true;
         }
         return false;
